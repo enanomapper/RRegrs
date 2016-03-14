@@ -56,6 +56,27 @@ Before installing RRegrs:
 * Update R to 3.2.2
 * Install Rtools with the default configuration options from [https://cran.r-project.org/bin/windows/Rtools/] (https://cran.r-project.org/bin/windows/Rtools/). 
 
+Caret version for RRegrs
+----------------------------
+
+The new version of caret is introducing some modifications that generates problems with some RRegrs methods.
+Therefore, RRegrs is working well with caret version 6.0.52:
+
+* please check caret version and report to this list
+
+```> packageVersion('caret')```
+
+* remove this version and the bug
+
+```> remove.packages(c('caret'))```
+
+* install Caret Package version 6.0.52, without the bug
+
+```> library(devtools)```
+
+```> install_version(package='caret',version='6.0-52')```
+
+
 Help
 -------------------
 
