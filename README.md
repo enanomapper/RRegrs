@@ -43,6 +43,8 @@ Install
     > library(devtools)
     > install_github("enanomapper/RRegrs", subdir="RRegrs")
 
+If you have errors you should try two extra parameters for *install.packages* such as *dependencies=TRUE,repos='http://cran.us.r-project.org'*.
+
 Compile from source
 -------------------
 
