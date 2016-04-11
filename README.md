@@ -58,6 +58,13 @@ Before installing RRegrs:
 * Update R to 3.2.2
 * Install Rtools with the default configuration options from [https://cran.r-project.org/bin/windows/Rtools/] (https://cran.r-project.org/bin/windows/Rtools/). 
 
+
+Notes for Linux
+-------------------
+
+Before calling your RRegrs() you should load doMC library: library(doMC).
+
+
 Caret version for RRegrs
 ----------------------------
 
