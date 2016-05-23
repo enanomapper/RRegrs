@@ -3533,7 +3533,7 @@ RRegrs <- function(DataFileName="ds.House.csv",DataFileSep=",",PathDataSet="Data
   # 9. Results for all splittings (not ordered)
   #-------------------------------------------------------------------------------
   cat("-> Results for all splitings ...\n")
-  df.res <- data.frame(dfRes)
+  df.res <- data.frame(dfRes) # including possible NA or -inf
   # print(df.res) # print all results as data frame
   
   # Writing the statistics into output files: one with detailed splits, other with only averages
@@ -3547,6 +3547,11 @@ RRegrs <- function(DataFileName="ds.House.csv",DataFileSep=",",PathDataSet="Data
   cat("-> Averaged statistics ...\n")
   ResAvgsF <- file.path(PathDataSet,ResAvgs)           # the main output file with averaged statistics for each regression method
   #library(data.table)
+  
+  # clear ds for NA and -inf
+  invisible(lapply(names(df.res),function(.name) set(df.res, which(is.infinite(df.res[[.name]])), j = .name,value =NA))) # -inf
+  df.res <- na.omit(df.res) # NA
+  
   dt.res  <- data.table(df.res) # convert data frame into data table (for sorting abd averaging)
   
   # MEANS for each Regression Method & CV type
