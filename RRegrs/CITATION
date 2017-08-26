@@ -1,0 +1,13 @@
+bibentry(bibtype = "Article",
+         title = "RRegrs: an R package for computer-aided model selection with multiple regression models",
+         author = c(person("Georgia", "Tsiliki"),
+                    person("Cristian", "Munteanu"),
+                    person("Douglas", "Bates"),
+                    person("Jose", "Fernandez-Lozano"),
+                    person("Carlos", "Bates"),
+                    person("Haralambos", "Sarimveis"),
+                    person("Egon", "Willighagen"))
+                    ),
+         year = 2015,
+         journal = "Journal of Cheminformatics",
+         url = "https://jcheminf.springeropen.com/articles/10.1186/s13321-015-0094-2")
