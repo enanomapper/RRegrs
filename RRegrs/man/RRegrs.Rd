@@ -7,13 +7,15 @@ Fitting a set of ten fully utilized Predictive Models.
 The current tool is a collection of regression tools from R that could be used to search the best regression models for any dataset. Filtering, Cross-Validation, Y-randomization are applied.
 }
 \usage{
-RRegrs(DataFileName="ds.House.csv",DataFileSep=",",
+RRegrs(DataFileName="ds.House.csv",DataFileSep=",",DependentVariable=NULL,IndependentVariables=NULL,
 PathDataSet="DataResults", noCores=1, ResAvgs="RRegsResAvgs.csv", ResBySplits="RRegrsResAllSplits.csv", ResBest="RRegrsResBest.csv", fDet="T", fFilters="F", fScaling="T", fRemNear0Var="T", fRemCorr="T",fLM="T", fGLM="T", fPLS="T", fLASSO="T", fSVRM="T", fNN="T", fRF="T", fRFRFE="T", fSVMRFE="T", fENET="T", RFE_SVM_C="1;5;10;15;20", RFE_SVM_epsilon="0.01;0.1;0.3", cutoff=0.9, iScaling=1, iScalCol=1, trainFrac=0.75, iSplitTimes=10, noYrand=100, CVtypes="repeatedcv;LOOCV", NoNAValFile="ds.NoNA.csv",  No0NearVarFile="ds.No0Var.csv", ScaledFile="ds.scaled.csv", NoCorrFile="ds.scaled.NoCorrs.csv",
 lmFile="LM.details.csv", glmFile="GLM.details.csv", plsFile="PLS.details.csv",lassoFile="Lasso.details.csv", svrmFile="SVMRadial.details.csv", nnFile="NN.details.csv", rfFile="RF.details.csv", rfrfeFile="RFRFE.details.csv", svmrfeFile="SVMRFE.details.csv",enetFile="ENET.details.csv",fR2rule="T")
 }
 \arguments{
  \item{DataFileName}{ a character string naming the data set file; the data set should be an object where samples are in rows and features are in columns. The first column should be a numeric or factor vector containing the outcome for each sample. Default value is the "ds.House.csv" data.}
  \item{DataFileSep}{ the column separator character in the data file. Default value is a comma (CSV file).}
+ \item{DependentVariable}{ Default value is NULL, causing the first column to be used as dependent variable.}
+ \item{IndependentVariables}{ Default value is NULL, causing the second to last columns to be used as dependent variables.}
  \item{PathDataSet}{ a character string naming the directory where the data set file is stored. Default value is the "DataResults" directory.}
  \item{noCores}{The number of cores used for calculations. Default value is 1.}
  \item{ResAvgs}{a character string naming the file where average  values of all models are stored. Default value is the "RRegsResAvgs.csv" file.}

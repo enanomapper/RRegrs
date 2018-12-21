@@ -2774,7 +2774,8 @@ ENETreg <- function(my.datf.train,my.datf.test,sCV,iSplit=1,fDet=F,outFile="") {
 # RRegrs MAIN FUNCTION 
 ###############################################################################################
 
-RRegrs <- function(DataFileName="ds.House.csv",DataFileSep=",",PathDataSet="DataResults",noCores=1,
+RRegrs <- function(DataFileName="ds.House.csv",DataFileSep=",",DependentVariable=NULL,IndependentVariables=NULL,
+  PathDataSet="DataResults",noCores=1,
   ResAvgs="RRegsResAvgs.csv",ResBySplits="RRegrsResAllSplits.csv",ResBest="RRegrsResBest.csv",
   fDet="T",fFilters="F",fScaling="T",fRemNear0Var="T",fRemCorr="T",
   fLM="T",fGLM="T",fPLS="T",fLASSO="T",fSVRM="T",fNN="T",fRF="T",fRFRFE="T",fSVMRFE="T",fENET="T",
@@ -2959,15 +2960,28 @@ RRegrs <- function(DataFileName="ds.House.csv",DataFileSep=",",PathDataSet="Data
   ds.dat0 <- read.csv(inFile,header=T,sep=DataFileSep)          # original dataset frame
   
   # resolving the text to number errors for future calculations
-  ds.indx<- colnames(ds.dat0)[2:dim(ds.dat0)[2]]                    # FEATURE names (no dependent variable)
-  ds.dat1<- ds.dat0[1:dim(ds.dat0)[1],2:dim(ds.dat0)[2]]            # dataset as columns
+  if (missing(IndependentVariables)) {
+    ds.indx<- colnames(ds.dat0)[2:dim(ds.dat0)[2]]                    # FEATURE names (no dependent variable)
+    ds.dat1<- ds.dat0[1:dim(ds.dat0)[1],2:dim(ds.dat0)[2]]            # dataset as columns
+  } else {
+    cat("      ---> independent variables : ", IndependentVariables,"\n")
+    ds.indx<- IndependentVariables                    # FEATURE names (no dependent variable)
+    ds.dat1<- ds.dat0[1:dim(ds.dat0)[1],IndependentVariables]            # dataset as columns
+  }
   ds.dat1<- apply(ds.dat1,1,function(x)as.numeric(as.character(x))) # dataset as row vectors to be used with caret!!!
   
   # dependent variable
-  net.c<- ds.dat0[,1]
+  if (missing(DependentVariable)) {
+    net.c<- ds.dat0[,1]
+  } else {
+    cat("      ---> dependent variable : ", DependentVariable,"\n")
+    net.c<- ds.dat0[,DependentVariable]
+  }
   net.c<- as.numeric(as.character(net.c)) # values
   # full ds frame with training and test
   ds<- as.data.frame(cbind(net.c,t(ds.dat1)))
+  cat(colnames(ds),"\n")
+  cat(as.character(head(ds)))
   
   #========================================================
   # (2) FILTERS
